@@ -67,6 +67,6 @@ The CloudFormation template (`OrphanedResourceHunter.yaml`) and the GitHub Actio
 2.  **Monitor the Deployment:** Go to the **Actions** tab in your GitHub repository. You will see a workflow run in progress.
 3.  Click on the workflow run to see the deployment logs. The `Deploy CloudFormation stack` step will show the progress of your CloudFormation deployment.
 4.  **Verify in AWS:** Once the workflow completes, go to the **CloudFormation** service in your AWS console. You will see a new stack named `OrphanedResourceHunterStack` in the `CREATE_COMPLETE` status.
-5.  You can also check the **Lambda** and **DynamoDB** services to confirm the new resources have been created.
+5.  You can also check the **Lambda** and **DynamoDB** services to confirm the new resources have been created
 
 Your project is now successfully deployed and running in your AWS account. You can find the API Gateway endpoint URL in the **Outputs** tab of your CloudFormation stack.
