@@ -41,3 +41,49 @@ A fully serverless, automated system that **scans, lists, and deletes** orphaned
 ## 🔄 End-to-End Workflow
 
 ```
+1. Scanner Lambda runs → finds orphaned resources
+2. Results stored in DynamoDB
+3. User opens UI (GitHub Pages)
+4. UI displays resources via API Gateway
+5. User selects → Delete Lambda removes them
+```
+
+---
+
+## 🚀 Benefits
+
+- 💰 **Cost Reduction** — Direct savings by deleting orphaned resources in one click
+- ♻️ **Resource Lifecycle Management** — Structured process for cloud hygiene
+- 📦 **Scalable** — Serverless, deployable in any AWS account
+- 🤖 **Automation** — Reduces manual effort and human error
+- 🏗️ **Infrastructure as Code** — Fully deployed via CloudFormation
+
+---
+
+## 🛠️ Tech Stack
+
+`AWS Lambda` `DynamoDB` `API Gateway` `CloudFormation` `SNS` `Python (boto3)` `GitHub Actions` `GitHub Pages`
+
+---
+
+## 📦 Deployment
+
+```bash
+# Clone the repo
+git clone https://github.com/manish-mahalinge/aws-cloud-cost-sentinel
+
+# Deploy via CloudFormation
+aws cloudformation deploy --template-file OrphanedResourceHunter.yaml --stack-name cloud-cost-sentinel
+```
+
+---
+
+## 🌐 Live Demo
+
+👉 [View Live Frontend](https://manish-mahalinge.github.io/aws-cloud-cost-sentinel/)
+
+---
+
+## 👨‍💻 Author
+
+**Manish Mahalinge** — [LinkedIn](https://www.linkedin.com/in/manishmahalinge) | [GitHub](https://github.com/manish-mahalinge)
