@@ -4,86 +4,75 @@
 ![DynamoDB](https://img.shields.io/badge/DB-DynamoDB-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-# ☁️ AWS Cloud Cost Sentinel
+![AWS](https://img.shields.io/badge/AWS-Lambda-orange)
+![Python](https://img.shields.io/badge/Python-boto3-blue)
+![CloudFormation](https://img.shields.io/badge/IaC-CloudFormation-yellow)
+![DynamoDB](https://img.shields.io/badge/DB-DynamoDB-blue)
 
-> Serverless solution to automatically detect and delete orphaned AWS resources — reducing cloud waste with one-click cleanup.
+# AWS Cloud Cost Sentinel
 
----
-
-## 🚨 The Problem: Cloud Waste
-
-- Unused resources silently accumulate in AWS accounts
-- They keep billing even when not in use
-- Examples: Unattached EBS volumes, unused Elastic IPs, empty S3 buckets, orphaned EFS
-- Leads to **budget overruns** and messy cloud environments
+I built this project because I noticed how easy it is to forget about AWS resources after you're done testing — and those forgotten resources keep silently charging you. This tool scans your AWS account, shows you what's orphaned, and lets you delete it all in one click.
 
 ---
 
-## ✅ The Solution
+## Why I Built This
 
-A fully serverless, automated system that **scans, lists, and deletes** orphaned AWS resources through a clean UI — deployed via CloudFormation in any AWS account.
-
----
-
-## 🏗️ Architecture
-
-| Component | Role |
-|---|---|
-| **Scanner Lambda** | Scans AWS account for orphaned resources |
-| **Delete Lambda** | Removes selected resources on demand |
-| **DynamoDB** | Stores scanned resource list |
-| **API Gateway** | Secure REST API for frontend communication |
-| **GitHub Pages** | Hosts the interactive frontend UI |
-| **CloudFormation** | Full IaC deployment |
+Working with AWS, I kept running into the same problem — old EBS volumes, unused Elastic IPs, forgotten S3 buckets just sitting there costing money. I wanted a simple dashboard where I could see everything in one place and clean it up without jumping between 10 different AWS console pages.
 
 ---
 
-## 🔄 End-to-End Workflow
+## How It Works
+
+Two Lambda functions do the heavy lifting:
+
+- **Scanner** — goes through your AWS account and finds resources that aren't attached to anything
+- **Delete** — removes whatever you select from the UI
+
+Results get stored in DynamoDB so the UI can display them. API Gateway connects the frontend to the backend. The whole thing is deployed via CloudFormation so you can spin it up in any AWS account in minutes.
 
 ```
-1. Scanner Lambda runs → finds orphaned resources
-2. Results stored in DynamoDB
-3. User opens UI (GitHub Pages)
-4. UI displays resources via API Gateway
-5. User selects → Delete Lambda removes them
+Scanner Lambda → DynamoDB → API Gateway → Frontend UI → Delete Lambda
 ```
 
 ---
 
-## 🚀 Benefits
+## What It Catches
 
-- 💰 **Cost Reduction** — Direct savings by deleting orphaned resources in one click
-- ♻️ **Resource Lifecycle Management** — Structured process for cloud hygiene
-- 📦 **Scalable** — Serverless, deployable in any AWS account
-- 🤖 **Automation** — Reduces manual effort and human error
-- 🏗️ **Infrastructure as Code** — Fully deployed via CloudFormation
+- Unattached EBS volumes
+- Unused Elastic IPs
+- Empty/orphaned S3 buckets
+- Unused EFS file systems
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Used
 
 `AWS Lambda` `DynamoDB` `API Gateway` `CloudFormation` `SNS` `Python (boto3)` `GitHub Actions` `GitHub Pages`
 
 ---
 
-## 📦 Deployment
+## Deploying It Yourself
 
 ```bash
-# Clone the repo
 git clone https://github.com/manish-mahalinge/aws-cloud-cost-sentinel
+cd aws-cloud-cost-sentinel
 
-# Deploy via CloudFormation
-aws cloudformation deploy --template-file OrphanedResourceHunter.yaml --stack-name cloud-cost-sentinel
+aws cloudformation deploy \
+  --template-file OrphanedResourceHunter.yaml \
+  --stack-name cloud-cost-sentinel \
+  --capabilities CAPABILITY_IAM
 ```
 
----
-
-## 🌐 Live Demo
-
-👉 [View Live Frontend](https://manish-mahalinge.github.io/aws-cloud-cost-sentinel/)
+Takes about 3-4 minutes to fully deploy.
 
 ---
 
-## 👨‍💻 Author
+## Live Demo
 
-**Manish Mahalinge** — [LinkedIn](https://www.linkedin.com/in/manishmahalinge) | [GitHub](https://github.com/manish-mahalinge)
+👉 [Try it here](https://manish-mahalinge.github.io/aws-cloud-cost-sentinel/)
+
+---
+
+## Author
+
+Manish Mahalinge — [LinkedIn](https://www.linkedin.com/in/manishmahalinge) | [GitHub](https://github.com/manish-mahalinge)n.com/in/manishmahalinge) | [GitHub](https://github.com/manish-mahalinge)
