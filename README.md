@@ -2,12 +2,6 @@
 ![Python](https://img.shields.io/badge/Python-boto3-blue)
 ![CloudFormation](https://img.shields.io/badge/IaC-CloudFormation-yellow)
 ![DynamoDB](https://img.shields.io/badge/DB-DynamoDB-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
-
-![AWS](https://img.shields.io/badge/AWS-Lambda-orange)
-![Python](https://img.shields.io/badge/Python-boto3-blue)
-![CloudFormation](https://img.shields.io/badge/IaC-CloudFormation-yellow)
-![DynamoDB](https://img.shields.io/badge/DB-DynamoDB-blue)
 
 # AWS Cloud Cost Sentinel
 
@@ -61,18 +55,9 @@ aws cloudformation deploy \
   --template-file OrphanedResourceHunter.yaml \
   --stack-name cloud-cost-sentinel \
   --capabilities CAPABILITY_IAM
-```
-
-Takes about 3-4 minutes to fully deploy.
-
----
-
-## Live Demo
-
-👉 [Try it here](https://manish-mahalinge.github.io/aws-cloud-cost-sentinel/)
 
 ---
 
 ## Author
 
-Manish Mahalinge — [LinkedIn](https://www.linkedin.com/in/manishmahalinge) | [GitHub](https://github.com/manish-mahalinge)n.com/in/manishmahalinge) | [GitHub](https://github.com/manish-mahalinge)
+Manish Mahalinge — [LinkedIn](www.linkedin.com/in/manish-mahalinge) 
