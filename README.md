@@ -56,8 +56,3 @@ aws cloudformation deploy \
   --stack-name cloud-cost-sentinel \
   --capabilities CAPABILITY_IAM
 
----
-
-## Author
-
-Manish Mahalinge — [LinkedIn](www.linkedin.com/in/manish-mahalinge) 
