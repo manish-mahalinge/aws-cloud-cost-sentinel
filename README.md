@@ -1,58 +1,31 @@
-![AWS](https://img.shields.io/badge/AWS-Lambda-orange)
-![Python](https://img.shields.io/badge/Python-boto3-blue)
-![CloudFormation](https://img.shields.io/badge/IaC-CloudFormation-yellow)
-![DynamoDB](https://img.shields.io/badge/DB-DynamoDB-blue)
+# Orphaned-Resource-Hunter
+This project provides an automated solution to identify and delete unused ("orphaned") resources across various AWS services. It's designed to help you reduce cloud costs and keep your AWS environment clean and efficient.
 
-# AWS Cloud Cost Sentinel
+The Challenge: Cloud Waste:
+-- Unused or forgotten resources in cloud environments. 
+-- They continue to incur costs even when not in use. Example: Old EC2 instances, unattached EBS volumes, unused S3 buckets. 
+-- Leads to "cloud waste" and budget overruns. 
 
-I built this project because I noticed how easy it is to forget about AWS resources after you're done testing — and those forgotten resources keep silently charging you. This tool scans your AWS account, shows you what's orphaned, and lets you delete it all in one click.
+Solution: Introducing the “Orphaned Resource Hunter”
 
----
+How It Works: The Architecture:
+-- Lambda Functions: Two main functions: 
+         A "Scanner" that identifies resources
+         A "Delete" that removes selected ones.
+-- DynamoDB: A NoSQL database to store the list of orphaned resources.
+-- API Gateway: Provides a secure and scalable endpoint for the frontend. 
+-- Frontend UI: A simple HTML file that interacts with the API.
 
-## Why I Built This
+End-to-End Workflow
+1. Scanner Lambda Runs.
+2. User Access UI.
+3. UI Displays Resources.
+4. User Selects Resources.
+5. Delete Lambda Removes the Resources.
 
-Working with AWS, I kept running into the same problem — old EBS volumes, unused Elastic IPs, forgotten S3 buckets just sitting there costing money. I wanted a simple dashboard where I could see everything in one place and clean it up without jumping between 10 different AWS console pages.
-
----
-
-## How It Works
-
-Two Lambda functions do the heavy lifting:
-
-- **Scanner** — goes through your AWS account and finds resources that aren't attached to anything
-- **Delete** — removes whatever you select from the UI
-
-Results get stored in DynamoDB so the UI can display them. API Gateway connects the frontend to the backend. The whole thing is deployed via CloudFormation so you can spin it up in any AWS account in minutes.
-
-```
-Scanner Lambda → DynamoDB → API Gateway → Frontend UI → Delete Lambda
-```
-
----
-
-## What It Catches
-
-- Unattached EBS volumes
-- Unused Elastic IPs
-- Empty/orphaned S3 buckets
-- Unused EFS file systems
-
----
-
-## Tech Used
-
-`AWS Lambda` `DynamoDB` `API Gateway` `CloudFormation` `SNS` `Python (boto3)` `GitHub Actions` `GitHub Pages`
-
----
-
-## Deploying It Yourself
-
-```bash
-git clone https://github.com/manish-mahalinge/aws-cloud-cost-sentinel
-cd aws-cloud-cost-sentinel
-
-aws cloudformation deploy \
-  --template-file OrphanedResourceHunter.yaml \
-  --stack-name cloud-cost-sentinel \
-  --capabilities CAPABILITY_IAM
-
+$ Benefits of the Project:
+1. Cost Reduction:- Direct Cost Saved By Deleting Orphaned Resources in Single Click.
+2. Resource LifeCycle Management:- Establish a Process of Managing Resources.
+3. Scalability:- Serverless Solution Deployable in Any AWS Account.
+4. Automation:- Reduces the Manual Effort and Human Error.
+5. Infrastructure as a Code :- Deployed using Cloud Formation.
